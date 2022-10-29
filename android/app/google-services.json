@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "1071837432217",
+    "project_id": "cook-recipe-flutter",
+    "storage_bucket": "cook-recipe-flutter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1071837432217:android:cf30b087a342ca68d8eb08",
+        "android_client_info": {
+          "package_name": "com.example.cook_recipe"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1071837432217-rdqv7arem83fvpe0kfq2ul6lr1p6sdfm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_S21ugKv8MZv3KearqZ84mXooVbMHZlc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1071837432217-rdqv7arem83fvpe0kfq2ul6lr1p6sdfm.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1071837432217-nvh6ilkj4gd7v02dgv6ou2pbbiv3cqtu.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.cookRecipe"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
