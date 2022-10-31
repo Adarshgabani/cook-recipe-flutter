@@ -1,4 +1,6 @@
+import 'package:cook_recipe/core/services/auth_service.dart';
 import 'package:cook_recipe/ui/screens/auth/signin_screen.dart';
+import 'package:cook_recipe/ui/screens/home/home_screen.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -19,7 +21,11 @@ class _SplashScreenState extends State<SplashScreen> {
 
   _navigate() async {
     Future.delayed(const Duration(seconds: 1), () {
-      Navigator.pushNamedAndRemoveUntil(context, SigninScreen.routeName, (route) => false);
+      if (FirebaseAuthService.currentUser == null) {
+        Navigator.pushNamedAndRemoveUntil(context, SigninScreen.routeName, (route) => false);
+      } else {
+        Navigator.pushNamedAndRemoveUntil(context, HomeScreen.routeName, (route) => false);
+      }
     });
   }
 

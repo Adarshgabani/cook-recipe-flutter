@@ -1,7 +1,15 @@
+// ignore_for_file: use_build_context_synchronously
+
+import 'package:cook_recipe/core/services/auth_service.dart';
+import 'package:cook_recipe/core/services/firestore_service.dart';
 import 'package:cook_recipe/ui/screens/auth/signup_screen.dart';
+import 'package:cook_recipe/ui/screens/auth/widgets/auth_button.dart';
+import 'package:cook_recipe/ui/screens/home/home_screen.dart';
 import 'package:cook_recipe/ui/shared/widgets/custom_textfield_widget.dart';
 import 'package:cook_recipe/utils/enums.dart';
+import 'package:cook_recipe/utils/styles.dart';
 import 'package:flutter/material.dart';
+import 'package:cook_recipe/utils/extensions.dart';
 
 class SigninScreen extends StatelessWidget {
   static String routeName = '/signin';
@@ -28,12 +36,26 @@ class SigninScreen extends StatelessWidget {
               const SizedBox(height: 24),
               CustomTextFieldWidget(controller: _passwordController, textFieldType: TextFieldType.password),
               const SizedBox(height: 48),
-              TextButton(
-                onPressed: () {},
-                child: const Text(
-                  "SIGN IN",
-                  style: TextStyle(fontSize: 18),
-                ),
+              AuthButtonWidget(
+                title: "SIGN IN",
+                onTap: () async {
+                  if (_emailController.text.isEmpty || _passwordController.text.isEmpty) {
+                    showErrorMessage(context, errorMessage: "Please enter email,password and username");
+                  } else if (!_emailController.text.isValidEmail()) {
+                    showErrorMessage(context, errorMessage: "Please enter valid email");
+                  } else if (!_passwordController.text.isValidPassword()) {
+                    showErrorMessage(context, errorMessage: "Password should containe Uppercase,lowecase,number,special character and Must be at least 8 characters in length");
+                  } else {
+                    String? response = await FirebaseAuthService.signinWithEmail(context, emailAddress: _emailController.text, password: _passwordController.text);
+
+                    if (response == null) {
+//Navigate to home
+                      Navigator.pushNamedAndRemoveUntil(context, HomeScreen.routeName, (route) => false);
+                    } else {
+                      showErrorMessage(context, errorMessage: response);
+                    }
+                  }
+                },
               ),
               const Spacer(),
               Row(
