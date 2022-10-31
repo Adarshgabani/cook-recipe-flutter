@@ -20,7 +20,7 @@ class HomeWidget extends StatelessWidget {
         Container(
           padding: EdgeInsets.only(top: 12, left: 24),
           child: Text(
-            "Welcome \n${FirebaseAuthService.currentUser!.displayName}",
+            "Welcome \n${FirebaseAuthService.currentUser?.displayName ?? ''}",
             style: TextStyle(fontSize: 24, color: Colors.orangeAccent),
           ),
         ),

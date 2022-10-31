@@ -5,7 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class FirebaseAuthService {
-  static final User? _user = FirebaseAuth.instance.currentUser;
+  static User? _user = FirebaseAuth.instance.currentUser;
   static User? get currentUser => _user;
 
   static Future<String> registerUser({required BuildContext context, required String emailAddress, required String password}) async {
@@ -35,6 +35,7 @@ class FirebaseAuthService {
     try {
       final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(email: emailAddress, password: password);
       log("SUCCESS::: registerUser :: $credential");
+      _user = FirebaseAuth.instance.currentUser;
       return null;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
